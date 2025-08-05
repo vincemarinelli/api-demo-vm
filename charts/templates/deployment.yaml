@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ds-cc-athena-api-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: ds-cc-athena-api-app
+  template:
+    metadata:
+      labels:
+        app: ds-cc-athena-api-app
+    spec:
+      containers:
+      - name: ds-cc-athena-api-app
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ENVIRONMENT
+          value: "Kubernetes"
+        - name: AWS_REGION
+          value: "eu-west-2" # Pin: where are we deploying this?
+      serviceAccountName: {{ .Values.serviceAccount.name }}
