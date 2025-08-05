@@ -1,0 +1,4 @@
+apiVersion: v2
+name: ds-cc-athena-api
+description: Patient Payment Reports Athena API
+version: 0.0.1

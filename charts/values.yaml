@@ -1,0 +1,17 @@
+image:
+  repository: "12345.dkr.ecr.eu-west-2.amazonaws.com/ds/cc-athena-api" # Needs to be created as of Aug-5-25
+  tag: latest
+replicaCount: 2
+service:
+  type: LoadBalancer
+  port: 8080
+serviceAccount:
+  create: true
+  name: "ds-cc-athena-api-service-account" 
+  iamRoleArn: arn:aws:iam::12345:role/FOO_ROLE # Need to create S3 buckets for both read and write, then set permission for each here
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 75
