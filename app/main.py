@@ -1,7 +1,5 @@
 from fastapi import FastAPI
+from routers.rows import router as rows_router
 
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World!"}
+app = FastAPI(title="Athena-backed API")
+app.include_router(rows_router)

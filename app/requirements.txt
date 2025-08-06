@@ -1,3 +1,9 @@
 # app/requirements.txt
 fastapi
 uvicorn
+PyAthena
+pandas
+python-dotenv
+pydantic-settings
+boto3
+orjson
