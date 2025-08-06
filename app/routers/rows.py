@@ -30,7 +30,7 @@ def _cast_and_clean(val):
 
 @router.get("/rows")
 def read_rows(limit: int = 10):
-    sql = f"SELECT * FROM {settings.athena_database}.athena_api_demo_table LIMIT {limit}"
+    sql = f"SELECT * FROM {settings.athena_database}.{settings.athena_table} LIMIT {limit}"
     conn = get_athena_conn()
     cursor = conn.cursor()
     try:
